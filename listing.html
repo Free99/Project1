@@ -31,7 +31,7 @@
 
         <br>
         <br>
-
+        <!--LISTING FORM START HERE!!-->
         <form>
             <div class="form-row">
                 <div class="form-group col-md-6">
@@ -59,13 +59,14 @@
                 <div class="form-group col-md-4">
                     <label for="inputState">State</label>
                     <select class="form-control bfh-states" id="inputState" data-country="US" data-state="TX">
-                        <!--ask easiest way to link list of states-->
+                        <!--Q: Easiest way to create form list of states-->
                     </select>
                 </div>
                 <div class="form-group col-md-2">
                     <label for="inputZip">Zip</label>
                     <input type="text" class="form-control" id="inputZip">
                 </div>
+                <!--FURNITURE INPUT START HERE!!-->
             </div>
             <div class="form-group">
                 <label for="inputFurnType">Furniture Type!</label>
@@ -79,7 +80,7 @@
                 <label for="inputFurnWeight">Furniture Weight</label>
                 <input type="text" class="form-control" id="inputFurnWeight" placeholder="How heavy is your piece? e.g. '100lbs' 'Two man job' 'REALLY HEAVY!'">
             </div>
-            <div class="form-group col-md-6">
+            <div class="form-group">
                 <label for="inputFurnCond">Furniture Condition!</label>
                 <select class="form-control" id="inputFurnCond">
                     <option>Like New!</option>
@@ -90,13 +91,21 @@
                 </select>
             </div>
 
-    </div>
-    <br>
-    <br>
-    <button type="submit" id="submitListing" class="btn btn-primary">
-        Submit Listing!
-    </button>
-    </form>
+            <div class="form-group">
+                <label for="inputComments">Additional Comments!</label>
+                <input type="text" class="form-control" id="inputComments" placeholder="Add any additional comments. e.g. 'Notate small damages' 'Additional info' 'Express interest in listing for pictures!'">
+            </div>
+            <br>
+            <br>
+            <!--Q: Easiest way to submit pictures?-->
+            <button type "submit" id="submitPhotos" class="btn btn-primary">
+                Add Pictures!
+            </button>
+            <button type="submit" id="submitListing" class="btn btn-primary">
+                Submit Listing!
+            </button>
+
+        </form>
 
 
 
