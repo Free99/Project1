@@ -20,6 +20,55 @@ function orderDatabase(zipcode){
 
 }
 
+
+//create function to fill database with information based on zipcode provided
+
+function enterData(n,str,c,st,z,ft,fd,fw,fc) {
+
+    var count = 0;
+
+        //check database to see if zip code user entered is already a node within the database
+    database.ref().forEach(function(data){
+        if(data.key == z){
+            count++;
+        }
+    });
+
+    //if zipcode does not exist within database, create new node for that zipcode 
+    if(count === 0){
+
+
+
+    //else zipcode exists and we can go to that node and save data there
+    } else{
+
+        // var newListingKey = database.ref().child(z).push().key;
+
+        var listingData = {
+
+            name: n,
+            street: str,
+            city: c,
+            state: st,
+            zipcode: z,
+            furnType: ft,
+            furnDim: fd,
+            furnWeight: fw,
+            furnCond: fc,
+
+        }
+        // Write the new listing data to the node with the existing zipcode.
+        var updates = {};
+        updates['/' + z + '/' + newListingKey] = listingData;
+        return database.ref().update(updates);
+
+
+    }
+
+
+
+}
+
 //event listener for submit button
 $("#submitListing").on("click",function(){
 
@@ -40,32 +89,41 @@ $("#submitListing").on("click",function(){
     var tempFurnCond = $("#inputFurnCond").val();
     // var tempPic = $("#furnPicLinkid").val();
 
-
-    database.ref().push({
-
-        name: tempName,
-        street: tempStreet,
-        city: tempCity,
-        state: tempState,
-        zip: tempZip,
-        furniture: {
-            
-            type: tempFurnType,
-            dims: tempFurnDims,
-            weight: tempFurnWeight,
-            cond: tempFurnCond,
-            picture: tempPic,
-
-
-
-        }
-
+    enterData(tempName,tempStreet,tempCity,tempcity,tempState,tempZip,tempFurnType,tempFurnDims,tempFurnWeight,tempFurnCond);
+        
+        
 
 
     });
 
 
-});
+    
+
+    // database.ref().push({
+
+    //     name: tempName,
+    //     street: tempStreet,
+    //     city: tempCity,
+    //     state: tempState,
+    //     zip: tempZip,
+    //     furniture: {
+            
+    //         type: tempFurnType,
+    //         dims: tempFurnDims,
+    //         weight: tempFurnWeight,
+    //         cond: tempFurnCond,
+    //         picture: tempPic,
+
+
+
+    //     }
+
+
+
+    // });
+
+
+
 
 
 // for now just going to populate the listings column with the data every
