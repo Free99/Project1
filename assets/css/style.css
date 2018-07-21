@@ -1,0 +1,46 @@
+#free99{
+    text-align: center;
+    font-size: 70px;
+    color: teal;
+}
+#zip{
+    text-align: center;
+    width: 200%;
+    font-weight: bold;
+}
+#jumbo{
+    background-color: black;
+    
+    
+}
+#searchbutton{
+    background-color: black;
+    color: teal;
+    font-weight: bold;
+    
+}
+body{
+    background-color: aqua !important;
+    background-image: url("../images/furniture.jpg"); 
+    width: 100%;
+  
+}
+.search{
+   margin-top: 10%;
+}
+#createbutton{
+    background-color: black;
+    color: teal;
+    margin-top: 15%;
+    padding: 10px;
+    font-weight: bold;
+    font-size: 30px;
+}
+#createbutton:hover{
+    background-color: teal;
+    color: black;
+}
+#searchbutton:hover{
+    background-color: teal;
+    color: black;
+}

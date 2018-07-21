@@ -7,6 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href= assets/css/style.css>
 
     <title>free.99|Home</title>
 
@@ -17,18 +18,31 @@
 </head>
 
 <body>
-
     <container-fluid id="bodycontainer">
-        <div class="row">
-            <div class="jumbotron" id="jumbo">
-
-                <h1 id="free.99">
-                    free.99
-                </h1>
-
-            </div>
+        <div class="jumbotron" id="jumbo">
+            <h1 id="free99"> free.99</h1>
         </div>
+        
+    <div class= "search">
+        <div class="row justify-content-center">
+            <form class="form-inline">
+                <div class="form-group mx-sm-2 mb-1">
+                  <label for="inputPassword2" class="sr-only">Zip Code</label>
+                  <input class="form-control" id="zip" placeholder="Zip Code">
+                </div>
+                <button type="submit" class="btn btn-primary mb-2" id="searchbutton">Search</button>
+              </form>
+    </div> 
+    </div>
+    <div class= "create">
+        <div class="row justify-content-center">
+              <form class="form-inline">
+                <button type="submit" class="btn btn-primary mb-2" id="createbutton">Create Listing</button>
+              </form>
+        </div>
+    </div>
 
+    
 
 
 
