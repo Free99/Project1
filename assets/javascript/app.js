@@ -66,8 +66,17 @@ var database = firebase.database();
 //this kills two birds with one stone
 
 
+database.ref().push({
 
-var ref =  database.ref("78745");
+    77433: listing0,
+    
+
+
+})
+
+
+
+var ref =  database.ref("78845");
 
 
 ref.once("value").then(function(snapshot) {
