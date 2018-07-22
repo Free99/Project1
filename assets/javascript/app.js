@@ -126,7 +126,7 @@ $("#searchZip").on("click",function(){
             console.log(tempListing);
             var tempZip = childSnap.val().zipcode;
             console.log(tempZip);
-            var tempFurnType = childSnap.val().furnType;
+            var tempFurnType = childSnap.val().furniture;
             console.log(tempFurnType);
             var tempCity = childSnap.val().city;
             console.log(tempCity);
@@ -134,11 +134,11 @@ $("#searchZip").on("click",function(){
             console.log(tempState);
             var tempStreet = childSnap.val().street;
             console.log(tempStreet);
-            var tempFurnWeight = childSnap.val().furnWeight;
+            var tempFurnWeight = childSnap.val().weight;
             console.log(tempFurnWeight);
-            var tempFurnDim = childSnap.val().furnDim;
+            var tempFurnDim = childSnap.val().dimensions;
             console.log(tempFurnDim);
-            var tempFurnCond = childSnap.val().furnCond;
+            var tempFurnCond = childSnap.val().condition;
             console.log(tempFurnCond);
 
 
