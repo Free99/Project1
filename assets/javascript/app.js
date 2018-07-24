@@ -15,16 +15,30 @@
 
 var database = firebase.database();
 
+//this function will be used to set a listings avaliable value to false after a user clicks they want the item
+//pass the key ref of the listing stored in the reference-value attribute of the displayed listing
+//"https://group-project-d9732.firebaseio.com need to remove this from the keyReference string for this to work
+//address holds a sub string removing the above string from the reference
+//function works
+//TO BE CALLED WITHIN THE "I WANT IT" BUTTON EVENT LISTENER
+function setToUnavaliable(keyReference){
+
+    var address = keyReference.substring(42);
+    var listingRef = database.ref(address);
+        listingRef.update({
+            avaliable: false,
+        })
+
+}
 
 
 
 
-//create function to fill database with information based on zipcode provided
-//filling the database is on hold
 
-
-
-// //event listener for submit button
+//this event listener fills database with user input from the create a listing page
+//using the push mehtod to fill data
+//storing the reference containing the special timestamp key within the listing in order to eb able 
+//to reference it later
  $("#submitListing").on("click",function(){
 
      event.preventDefault();
@@ -46,18 +60,23 @@ var database = firebase.database();
      // var tempPic = $("#furnPicLinkid").val();
 
     //write some sort of input validation checking to make sure that all fields have been filled out
+    //HAVE NOT WRITTEN ANY DATA VALIDATION
     //if data is validated is true then push data, else prompt user to fill out all fields
-    database.ref("/Listings").push({
+    var newKey = database.ref("/Listings").push();
+
+    newKey.set({
         name: tempName,
         street: tempStreet,
         city: tempCity,
         state: tempState,
         zipcode: tempZip,
+        keyRef: newKey.toString(),
         listing: tempListing,
         furniture: tempFurnType,
         dimensions: tempFurnDims,
         weight: tempFurnWeight,
         condition: tempFurnCond,
+        avaliable: true
 
 
 
@@ -82,17 +101,11 @@ var database = firebase.database();
     });
 
 
-    
-
-
-
-
-
-
-// for now just going to populate the listings column with the data every
-//before doing this need to research if we can order the database using the zipcode searched
-//if so i need to create a function that orders the database that is called everytime a user adds a listing or the page is refreshed
-//this kills two birds with one stone
+//this function queries the database for the zipcode searched by the user
+//we then display all listings matching the zipcode requested that are still avaliable
+//if no listings in that area we display a message that there are no listings in that area
+//I want to add a button that allows the user to just display all listings in the database,
+//can order the database when that button is clicked however we want
 
 
 $("#searchZip").on("click",function(){
@@ -119,6 +132,8 @@ $("#searchZip").on("click",function(){
         console.log(snapshot.val());
         //cycle through each listing within the database and write to the page simultaneously
         snapshot.forEach(function(childSnap){
+            //only display listings that are avaliable by checking if the avaliable key is set to true
+            if(childSnap.val().avaliable){
 
             var tempName = childSnap.val().name;
             console.log(tempName);
@@ -126,6 +141,8 @@ $("#searchZip").on("click",function(){
             console.log(tempListing);
             var tempZip = childSnap.val().zipcode;
             console.log(tempZip);
+            var tempRef = childSnap.val().keyRef;
+            console.log(tempRef);
             var tempFurnType = childSnap.val().furniture;
             console.log(tempFurnType);
             var tempCity = childSnap.val().city;
@@ -142,18 +159,18 @@ $("#searchZip").on("click",function(){
             console.log(tempFurnCond);
 
 
-            var newListing = $('<li class="listing list-group-item" zip-value="'+ tempZip +'" city-value="'+ tempCity +'" street-value="'+ tempStreet +'" name-value="'+ tempName +'" furnType-value="'+ tempFurnType +'" furnWeight-value="'+ tempFurnWeight +'" furnDim-value="'+ tempFurnDim +'" furnCond-value="'+ tempFurnCond +'"> Listing: '+ tempListing +' Furniture: ' + tempFurnType + '</li>');
+            var newListing = $('<li class="listing list-group-item" zip-value="'+ tempZip +'" city-value="'+ tempCity +' reference-value="' + tempRef + '" street-value="'+ tempStreet +'" name-value="'+ tempName +'" furnType-value="'+ tempFurnType +'" furnWeight-value="'+ tempFurnWeight +'" furnDim-value="'+ tempFurnDim +'" furnCond-value="'+ tempFurnCond +'"> Listing: '+ tempListing +' Furniture: ' + tempFurnType + '</li>');
             //once we have the data here, It think it would be best to store the details within the divs
             //we are creaeting for each listing, that way when the user clicks the div we do not have to
             //access the database again
 
             $("#listingbox").append(newListing);
+            } else{
+
+            }
 
 
         });
-
-
-
 
         //if the data does not exsist, return "no listing in the area requested"
         } else{
@@ -174,45 +191,6 @@ $("#searchZip").on("click",function(){
 
 
 
-var ref =  database.ref("78845");
-
-
-ref.once("value").then(function(snapshot) {
-
-    var doesExsist = snapshot.exists();
-
-    //runs code if node exists within database
-    if(doesExsist){
-    console.log(snapshot.val());
-    //cycle through each listing within the database and write to the page simultaneously
-    snapshot.forEach(function(childSnap){
-
-        var tempName = childSnap.val().name;
-        console.log(tempName);
-        var tempZip = childSnap.val().zipcode;
-        console.log(tempZip);
-        var tempFurnType = childSnap.val().furnType;
-        console.log(tempFurnType);
-
-        //once we have the data here, It think it would be best to store the details within the divs
-        //we are creaeting for each listing, that way when the user clicks the div we do not have to
-        //access the database again
 
 
 
-
-    });
-
-
-
-
-    //if the data does not exsist, return "no listing in the area requested"
-    } else{
-
-        var noListingMessage = "sorry there are no listings in the area you requested"
-
-        console.log(noListingMessage);
-    }
-
-
-});
