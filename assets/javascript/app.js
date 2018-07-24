@@ -15,106 +15,182 @@
 
 var database = firebase.database();
 
+//this function will be used to set a listings avaliable value to false after a user clicks they want the item
+//pass the key ref of the listing stored in the reference-value attribute of the displayed listing
+//"https://group-project-d9732.firebaseio.com need to remove this from the keyReference string for this to work
+//address holds a sub string removing the above string from the reference
+//function works
+//TO BE CALLED WITHIN THE "I WANT IT" BUTTON EVENT LISTENER
+function setToUnavaliable(keyReference){
+
+    var address = keyReference.substring(42);
+    var listingRef = database.ref(address);
+        listingRef.update({
+            avaliable: false,
+        })
+
+}
 
 
-//CODE COMMENT OUT START
-
-//create function to fill database with information based on zipcode provided
-//filling the database is on hold
 
 
 
-// //event listener for submit button
-// $("#submitListing").on("click",function(){
+//this event listener fills database with user input from the create a listing page
+//using the push mehtod to fill data
+//storing the reference containing the special timestamp key within the listing in order to eb able 
+//to reference it later
+ $("#submitListing").on("click",function(){
 
-//     event.preventDefault();
+     event.preventDefault();
 
-//     //can have some sort of validation, add this later
-//     //still waiting on IDs for data entered by user
-//     var tempName = $("#inputName").val().trim();
-//     var tempStreet = $("#inputAddress").val().trim();
-//     var tempCity = $("#inputCity").val().trim();
-//     var tempState = $("#inputState").val().trim();
-//     var tempZip = $("#inputZip").val().trim();
-//     var tempFurnType = $("#inputFurnType").val().trim();
-//     var tempFurnDims = $("#inputFurnDim").val().trim();
-//     var tempFurnWeight = $("#ipnutFurnWeight").val().trim();
+     //can have some sort of validation, add this later
+     //still waiting on IDs for data entered by user
+     var tempName = $("#inputName").val().trim();
+     var tempStreet = $("#inputAddress").val().trim();
+     var tempCity = $("#inputCity").val().trim();
+     var tempState = $("#inputState").val().trim();
+     var tempZip = $("#inputZip").val().trim();
+     var tempFurnType = $("#inputFurnType").val().trim();
+     var tempFurnDims = $("#inputFurnDim").val().trim();
+     var tempFurnWeight = $("#inputFurnWeight").val().trim();
+     var tempListing = $("#inputListing").val().trim();
 
-//     //since the condition will be a button, need to tweak this to get the attribute associated with the button
-//     var tempFurnCond = $("#inputFurnCond").val();
-//     // var tempPic = $("#furnPicLinkid").val();
+     //since the condition will be a button, need to tweak this to get the attribute associated with the button
+     var tempFurnCond = $("#inputFurnCond").val();
+     // var tempPic = $("#furnPicLinkid").val();
 
-//     enterData(tempName,tempStreet,tempCity,tempcity,tempState,tempZip,tempFurnType,tempFurnDims,tempFurnWeight,tempFurnCond);
+    //write some sort of input validation checking to make sure that all fields have been filled out
+    //HAVE NOT WRITTEN ANY DATA VALIDATION
+    //if data is validated is true then push data, else prompt user to fill out all fields
+    var newKey = database.ref("/Listings").push();
+
+    newKey.set({
+        name: tempName,
+        street: tempStreet,
+        city: tempCity,
+        state: tempState,
+        zipcode: tempZip,
+        keyRef: newKey.toString(),
+        listing: tempListing,
+        furniture: tempFurnType,
+        dimensions: tempFurnDims,
+        weight: tempFurnWeight,
+        condition: tempFurnCond,
+        avaliable: true
+
+
+
+    });
+
+    $("#inputName").val('');
+    $("#inputAddress").val('');
+    $("#inputCity").val('');
+    $("#inputStreet").val('');
+    $("#inputState").val('');
+    $("#inputZip").val('');
+    $("#inputFurnType").val('');
+    $("#inputFurnDim").val('');
+    $("#inputFurnWeight").val('');
+    $("#inputListing").val('');
+
+
         
         
 
 
-//     });
-
-//COMMENT OUT END
-
-    
+    });
 
 
+//this function queries the database for the zipcode searched by the user
+//we then display all listings matching the zipcode requested that are still avaliable
+//if no listings in that area we display a message that there are no listings in that area
+//I want to add a button that allows the user to just display all listings in the database,
+//can order the database when that button is clicked however we want
 
 
+$("#searchZip").on("click",function(){
+
+    //this will be the zip code we are searching the databse for
+    event.preventDefault();
+
+    $("#listingbox").empty();
+
+    var searchZip = $("#inputSearchZip").val();
+
+    console.log(searchZip);
+
+    var listings = database.ref().child('Listings');
+    var query = listings.orderByChild('zipcode').equalTo(searchZip);
 
 
-// for now just going to populate the listings column with the data every
-//before doing this need to research if we can order the database using the zipcode searched
-//if so i need to create a function that orders the database that is called everytime a user adds a listing or the page is refreshed
-//this kills two birds with one stone
+    query.once("value").then(function(snapshot) {
+
+        var doesExsist = snapshot.exists();
+
+        //runs code if node exists within database
+        if(doesExsist){
+        console.log(snapshot.val());
+        //cycle through each listing within the database and write to the page simultaneously
+        snapshot.forEach(function(childSnap){
+            //only display listings that are avaliable by checking if the avaliable key is set to true
+            if(childSnap.val().avaliable){
+
+            var tempName = childSnap.val().name;
+            console.log(tempName);
+            var tempListing = childSnap.val().listing;
+            console.log(tempListing);
+            var tempZip = childSnap.val().zipcode;
+            console.log(tempZip);
+            var tempRef = childSnap.val().keyRef;
+            console.log(tempRef);
+            var tempFurnType = childSnap.val().furniture;
+            console.log(tempFurnType);
+            var tempCity = childSnap.val().city;
+            console.log(tempCity);
+            var tempState = childSnap.val().state;
+            console.log(tempState);
+            var tempStreet = childSnap.val().street;
+            console.log(tempStreet);
+            var tempFurnWeight = childSnap.val().weight;
+            console.log(tempFurnWeight);
+            var tempFurnDim = childSnap.val().dimensions;
+            console.log(tempFurnDim);
+            var tempFurnCond = childSnap.val().condition;
+            console.log(tempFurnCond);
 
 
-database.ref().push({
+            var newListing = $('<li class="listing list-group-item" zip-value="'+ tempZip +'" city-value="'+ tempCity +' reference-value="' + tempRef + '" street-value="'+ tempStreet +'" name-value="'+ tempName +'" furnType-value="'+ tempFurnType +'" furnWeight-value="'+ tempFurnWeight +'" furnDim-value="'+ tempFurnDim +'" furnCond-value="'+ tempFurnCond +'"> Listing: '+ tempListing +' Furniture: ' + tempFurnType + '</li>');
+            //once we have the data here, It think it would be best to store the details within the divs
+            //we are creaeting for each listing, that way when the user clicks the div we do not have to
+            //access the database again
 
-    77433: listing0,
-    
+            $("#listingbox").append(newListing);
+            } else{
 
-
-})
-
-
-
-var ref =  database.ref("78845");
+            }
 
 
-ref.once("value").then(function(snapshot) {
+        });
 
-    var doesExsist = snapshot.exists();
+        //if the data does not exsist, return "no listing in the area requested"
+        } else{
 
-    //runs code if node exists within database
-    if(doesExsist){
-    console.log(snapshot.val());
-    //cycle through each listing within the database and write to the page simultaneously
-    snapshot.forEach(function(childSnap){
+        var noListingMessage = "sorry there are no listings in the area you requested"
 
-        var tempName = childSnap.val().name;
-        console.log(tempName);
-        var tempZip = childSnap.val().zipcode;
-        console.log(tempZip);
-        var tempFurnType = childSnap.val().furnType;
-        console.log(tempFurnType);
+        $('#listingbox').append('<li class=list-group-item>' + noListingMessage + '</li>');
 
-        //once we have the data here, It think it would be best to store the details within the divs
-        //we are creaeting for each listing, that way when the user clicks the div we do not have to
-        //access the database again
-
-
+        console.log(noListingMessage);
+        }
 
 
     });
 
 
 
-
-    //if the data does not exsist, return "no listing in the area requested"
-    } else{
-
-        var noListingMessage = "sorry there are no listings in the area you requested"
-
-        console.log(noListingMessage);
-    }
-
-
 });
+
+
+
+
+
+
