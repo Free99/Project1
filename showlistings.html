@@ -1,6 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 
+<script src="//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="//d79i1fxsrar4t.cloudfront.net/jquery.liveaddress/5.1/jquery.liveaddress.min.js"></script>
+<script>
+    var liveaddress = $.LiveAddress({
+        key: "18045844531301777",
+        debug: false,
+        target: "US",
+        addresses: [{
+            address1: '#inputStreet',
+            locality: '#inputCity',
+            administrative_area: '#inputState',
+            postal_code: '#inputZip',
+        }]
+    });
+</script>
+
 <head>
 
     <meta charset="UTF-8">
@@ -13,7 +29,26 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B"
         crossorigin="anonymous">
 
-        <script src="https://www.gstatic.com/firebasejs/5.2.0/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.2.0/firebase.js"></script>
+
+    <style>
+        /* Always set the map height explicitly to define the size of the div
+        * element that contains the map. */
+
+        #map {
+            height: 400px;
+            width:100%;
+        }
+
+        /* Optional: Makes the sample page fill the window. */
+
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
 
 </head>
 
@@ -36,33 +71,33 @@
             <div class="col-md-9">
 
             </div>
-        
+
             <div class="form-group col-md-2">
-                    <label for="inputSearchZip">Search Zip</label>
-                    <input type="text" class="form-control form-control-sm" id="inputSearchZip">
+                <label for="inputSearchZip">Search Zip</label>
+                <input type="text" class="form-control form-control-sm" id="inputSearchZip">
             </div>
             <div class="col-md-1">
                 <button type="submit" id="searchZip" class="btn btn-danger">
-                Search!
+                    Search!
                 </button>
             </div>
         </div>
 
         <div class="row" id="listingsRow">
 
-            <!--will require CSS Prop: overflow-y: scroll-->
+            <!-- will require CSS Prop: overflow-y: scroll-->
             <div class="scrollable col-lg-3">
                 <ul class="list-group" id="listingbox">
-                    
+
                 </ul>
-                
-                    
-            </div>
-            <div class="col-lg-6" id="map">
-                Test
+
+
+            </div> 
+            <div class="col-lg-6">
+                    <div id="map"></div>
             </div>
             <div class="col-lg-3" id="bio?">
-                Test
+                test
             </div>
 
 
@@ -96,6 +131,24 @@
     <script src="assets/javascript/app.js"></script>
     <!--Additional inline script if necessary below-->
     <script>
+        var map;
+
+        function initMap() {
+            map = new google.maps.Map(document.getElementById('map'), {
+                center: {
+                    lat: 30.268,
+                    lng: -97.735
+                },
+                zoom: 8
+            });
+        }
+       
+    </script>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyACyPPG5iVT8ZJ1jvGDBfljgTX64HOVgz0&callback=initMap" async
+        defer>
+    </script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyACyPPG5iVT8ZJ1jvGDBfljgTX64HOVgz0&libraries=places">
     </script>
 
 
