@@ -9,7 +9,7 @@
     font-weight: bold;
 }
 #jumbo{
-    background-color: white;
+    background-color: darkred;
     
     
 }
@@ -20,7 +20,7 @@
  
 }
 #logo{
-    width: 100px;
+    width: 300px;
     display: block;
     margin-left: auto;
     margin-right: auto;
