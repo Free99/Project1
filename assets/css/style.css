@@ -17,9 +17,13 @@
     background-color: black;
     color: teal;
     font-weight: bold;
-
-    
-    
+ 
+}
+#logo{
+    width: 100px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 body{
     background-color: aqua !important;
