@@ -36,7 +36,8 @@
         * element that contains the map. */
 
         #map {
-            height: 100%;
+            height: 400px;
+            width:100%;
         }
 
         /* Optional: Makes the sample page fill the window. */
@@ -52,8 +53,6 @@
 </head>
 
 <body>
-
-    <div id="map"></div>
 
     <div class="container-fluid" id="bodycontainer">
 
@@ -86,19 +85,19 @@
 
         <div class="row" id="listingsRow">
 
-            <!--will require CSS Prop: overflow-y: scroll-->
+            <!-- will require CSS Prop: overflow-y: scroll-->
             <div class="scrollable col-lg-3">
                 <ul class="list-group" id="listingbox">
 
                 </ul>
 
 
-            </div>
-            <div class="col-lg-6" id="map">
-                Test
+            </div> 
+            <div class="col-lg-6">
+                    <div id="map"></div>
             </div>
             <div class="col-lg-3" id="bio?">
-                Test
+                test
             </div>
 
 
@@ -143,6 +142,7 @@
                 zoom: 8
             });
         }
+       
     </script>
 
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyACyPPG5iVT8ZJ1jvGDBfljgTX64HOVgz0&callback=initMap" async
