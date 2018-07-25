@@ -26,8 +26,8 @@
     width: 300px;
 }
 #searchbutton{
-    background-color: black;
-    color: darkred;
+    background-color: rgba(255,255,255,0.5);
+    color: white;
     font-weight: bold;
     
 }
@@ -41,8 +41,8 @@ body{
    margin-top: 10%;
 }
 #createbutton{
-    background-color: black;
-    color: darkred;
+    background-color: rgba(255,255,255,0.5);
+    color: white;
     margin-top: 15%;
     padding: 10px;
     font-weight: bold;
