@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="//d79i1fxsrar4t.cloudfront.net/jquery.liveaddress/5.1/jquery.liveaddress.min.js"></script>
 <script>
     var liveaddress = $.LiveAddress({
@@ -86,7 +85,7 @@
         <div class="row" id="listingsRow">
 
             <!-- will require CSS Prop: overflow-y: scroll-->
-            <div class="scrollable col-lg-3">
+            <div class="col-lg-3">
                 <ul class="list-group" id="listingbox">
 
                 </ul>
@@ -95,6 +94,7 @@
             </div> 
             <div class="col-lg-6">
                     <div id="map"></div>
+                    <div id="listing-details"></div>
             </div>
             <div class="col-lg-3" id="bio?">
                 test
@@ -127,29 +127,19 @@
     <!--AJAX-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-    <!-- appjs link -->
-    <script src="assets/javascript/app.js"></script>
-    <!--Additional inline script if necessary below-->
-    <script>
-        var map;
-
-        function initMap() {
-            map = new google.maps.Map(document.getElementById('map'), {
-                center: {
-                    lat: 30.268,
-                    lng: -97.735
-                },
-                zoom: 8
-            });
-        }
-       
-    </script>
-
+    <!-- google maps API -->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyACyPPG5iVT8ZJ1jvGDBfljgTX64HOVgz0&callback=initMap" async
         defer>
     </script>
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyACyPPG5iVT8ZJ1jvGDBfljgTX64HOVgz0&libraries=places">
-    </script>
+
+    <!-- appjs link -->
+    <script src="assets/javascript/app.js"></script>
+    <!--Additional inline script if necessary below-->
+    
+       
+
+
+ 
 
 
 </body>
