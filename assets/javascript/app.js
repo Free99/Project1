@@ -285,6 +285,7 @@ $("#searchZip").on("click",function(){
 //this is the event listener for the listings, going to display the details for the furniture
 $(document).on('click',".daTing",function(){
 
+    event.preventDefault();
     deleteMarkers();
 
     $("#listing-details").empty();
