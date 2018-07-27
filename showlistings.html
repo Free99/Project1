@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<script src="//d79i1fxsrar4t.cloudfront.net/jquery.liveaddress/5.1/jquery.liveaddress.min.js"></script>
-<script>
+<!-- dont need this on this page -->
+<!-- <script src="//d79i1fxsrar4t.cloudfront.net/jquery.liveaddress/5.1/jquery.liveaddress.min.js"></script> -->
+<!-- <script>
     var liveaddress = $.LiveAddress({
         key: "18045844531301777",
         debug: false,
@@ -14,7 +15,7 @@
             postal_code: '#inputZip',
         }]
     });
-</script>
+</script> -->
 
 <head>
 
@@ -27,6 +28,10 @@
     <!--Bootstrap documentation-->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B"
         crossorigin="anonymous">
+
+    <!-- google maps API -->
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyACyPPG5iVT8ZJ1jvGDBfljgTX64HOVgz0">
+    </script>
 
     <script src="https://www.gstatic.com/firebasejs/5.2.0/firebase.js"></script>
 
@@ -68,6 +73,8 @@
 
         <div class="row">
             <div class="col-md-9">
+                    <a class="btn btn-danger link" href="./listing.html">Create a listing!
+                    </a>
 
             </div>
 
@@ -86,6 +93,7 @@
 
             <!-- will require CSS Prop: overflow-y: scroll-->
             <div class="col-lg-3">
+                <h5>Listings</h5>
                 <ul class="list-group" id="listingbox">
 
                 </ul>
@@ -93,11 +101,16 @@
 
             </div> 
             <div class="col-lg-6">
-                    <div id="map"></div>
-                    <div id="listing-details"></div>
+                <h5>Map</h5>
+                <div id="map"></div>
+                    
             </div>
-            <div class="col-lg-3" id="bio?">
-                test
+            <div class="col-lg-3">
+                <h5>Listing Details</h5>
+                <div id="listing-details">
+
+                </div>
+                
             </div>
 
 
@@ -127,10 +140,6 @@
     <!--AJAX-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-    <!-- google maps API -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyACyPPG5iVT8ZJ1jvGDBfljgTX64HOVgz0&callback=initMap" async
-        defer>
-    </script>
 
     <!-- appjs link -->
     <script src="assets/javascript/app.js"></script>

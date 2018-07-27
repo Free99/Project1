@@ -20,13 +20,16 @@ var database = firebase.database();
 //this initializes the map and marker array
 var markers = [];
 var gMarker = "";
-var map = new google.maps.Map(document.getElementById('map'), {
+
+var map ;
+
+  map = new google.maps.Map(document.getElementById('map'), {
     zoom: 8,
     center: {lat: 30.268, lng: -97},
     zoomControl: false
   });
-var geocoder = new google.maps.Geocoder();
 
+var geocoder = new google.maps.Geocoder();
 
 //funciton will be called everytime zip is searched but there are no listings in the database for that location
 function geocodeAddressZipcode(geocoder, resultsMap, searchZip) {
@@ -113,65 +116,65 @@ function setToUnavaliable(keyReference){
 //using the push mehtod to fill data
 //storing the reference containing the special timestamp key within the listing in order to be able 
 //to reference it later
- $("#submitListing").on("click",function(){
+//  $("#submitListing").on("click",function(){
 
-     event.preventDefault();
+//      event.preventDefault();
 
-     //can have some sort of validation, add this later
-     var tempName = $("#inputName").val().trim();
-     var tempStreet = $("#inputStreet").val().trim();
-     var tempCity = $("#inputCity").val().trim();
-     var tempState = $("#inputState").val().trim();
-     var tempZip = $("#inputZip").val().trim();
-     var tempFurnType = $("#inputFurnType").val().trim();
-     var tempFurnDims = $("#inputFurnDim").val().trim();
-     var tempFurnWeight = $("#inputFurnWeight").val().trim();
-     var tempListing = $("#inputListing").val().trim();
+//      //can have some sort of validation, add this later
+//      var tempName = $("#inputName").val().trim();
+//      var tempStreet = $("#inputStreet").val().trim();
+//      var tempCity = $("#inputCity").val().trim();
+//      var tempState = $("#inputState").val().trim();
+//      var tempZip = $("#inputZip").val().trim();
+//      var tempFurnType = $("#inputFurnType").val().trim();
+//      var tempFurnDims = $("#inputFurnDim").val().trim();
+//      var tempFurnWeight = $("#inputFurnWeight").val().trim();
+//      var tempListing = $("#inputListing").val().trim();
 
-     //this works
-     var tempFurnCond = $("#inputFurnCond").val();
-     // var tempPic = $("#furnPicLinkid").val();
+//      //this works
+//      var tempFurnCond = $("#inputFurnCond").val();
+//      // var tempPic = $("#furnPicLinkid").val();
 
-    //write some sort of input validation checking to make sure that all fields have been filled out
-    //HAVE NOT WRITTEN ANY DATA VALIDATION
-    //if data is validated is true then push data, else prompt user to fill out all fields
-    var newKey = database.ref("/Listings").push();
+//     //write some sort of input validation checking to make sure that all fields have been filled out
+//     //HAVE NOT WRITTEN ANY DATA VALIDATION
+//     //if data is validated is true then push data, else prompt user to fill out all fields
+//     var newKey = database.ref("/Listings").push();
 
-    newKey.set({
-        name: tempName,
-        street: tempStreet,
-        city: tempCity,
-        state: tempState,
-        zipcode: tempZip,
-        keyRef: newKey.toString(),
-        listing: tempListing,
-        furniture: tempFurnType,
-        dimensions: tempFurnDims,
-        weight: tempFurnWeight,
-        condition: tempFurnCond,
-        avaliable: true
+//     newKey.set({
+//         name: tempName,
+//         street: tempStreet,
+//         city: tempCity,
+//         state: tempState,
+//         zipcode: tempZip,
+//         keyRef: newKey.toString(),
+//         listing: tempListing,
+//         furniture: tempFurnType,
+//         dimensions: tempFurnDims,
+//         weight: tempFurnWeight,
+//         condition: tempFurnCond,
+//         avaliable: true
 
 
 
-    });
+//     });
 
-    $("#inputName").val('');
-    $("#inputAddress").val('');
-    $("#inputCity").val('');
-    $("#inputStreet").val('');
-    $("#inputState").val('');
-    $("#inputZip").val('');
-    $("#inputFurnType").val('');
-    $("#inputFurnDim").val('');
-    $("#inputFurnWeight").val('');
-    $("#inputListing").val('');
+//     $("#inputName").val('');
+//     $("#inputAddress").val('');
+//     $("#inputCity").val('');
+//     $("#inputStreet").val('');
+//     $("#inputState").val('');
+//     $("#inputZip").val('');
+//     $("#inputFurnType").val('');
+//     $("#inputFurnDim").val('');
+//     $("#inputFurnWeight").val('');
+//     $("#inputListing").val('');
 
 
         
         
 
 
-    });
+//     });
 
 
 //this function queries the database for the zipcode searched by the user
@@ -314,9 +317,9 @@ $(document).on('click',".daTing",function(){
     geocodeAddressListing(geocoder, map, address);
 
     var listingElement = $('<div class="card" style="width: 18rem;"><div class="card-body"><h5 class="card-title">Listing Details</h5><h6 class="card-subtitle mb-2 text-muted">' + listingName + '</h6></div></div>');
-    listingElement.append('<p> contact name: ' + contactName + '</p>');
-    listingElement.append('<p> furniture: ' + furnitureType + '</p>');
-    listingElement.append('<p> address: ' + address + '</p>');
+    listingElement.append('<p class="pl-3"> contact name: ' + contactName + '</p>');
+    listingElement.append('<p class="pl-3"> furniture: ' + furnitureType + '</p>');
+    listingElement.append('<p class="pl-3"> address: ' + address + '</p>');
     $('#listing-details').append(listingElement);
 
 
