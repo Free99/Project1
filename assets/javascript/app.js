@@ -191,6 +191,8 @@ $("#searchZip").on("click",function(){
     //clears the listings column so that new divs for listings are created everytime the user searches for a zipcode
     $("#listingbox").empty();
 
+    $("#listing-details").empty();
+
     //delete markers that were on the map from the previous search
     deleteMarkers();
 
