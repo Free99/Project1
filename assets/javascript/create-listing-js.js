@@ -70,6 +70,8 @@ $(document).ready(function(){
    $("#inputFurnWeight").val('');
    $("#inputListing").val('');
    $("#inputFurnCond").val('');
+   $("#inputComments").val('');
+
 
 
        
