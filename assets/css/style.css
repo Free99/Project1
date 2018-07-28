@@ -19,8 +19,8 @@
     
 }
 #searchbutton{
-    background-color: rgba(255,255,255,0.5);
-    color: white;
+    background-color: black;
+    color: teal;
     font-weight: bold;
     
 }
@@ -34,8 +34,8 @@ body{
    margin-top: 10%;
 }
 #createbutton{
-    background-color: rgba(255,255,255,0.5);
-    color: white;
+    background-color: black;
+    color: teal;
     margin-top: 15%;
     padding: 10px;
     font-weight: bold;
