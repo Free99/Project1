@@ -69,6 +69,7 @@ $(document).ready(function(){
    $("#inputFurnDim").val('');
    $("#inputFurnWeight").val('');
    $("#inputListing").val('');
+   $("#inputFurnCond").val('');
 
 
        
