@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-        <script src="//d79i1fxsrar4t.cloudfront.net/jquery.liveaddress/5.1/jquery.liveaddress.min.js"></script>
+        <!-- <script src="//d79i1fxsrar4t.cloudfront.net/jquery.liveaddress/5.1/jquery.liveaddress.min.js"></script>
         <script>var liveaddress = $.LiveAddress({
             key: "18045844531301777", //NEED NEW KEY FOR DEPLOYED free.99 IO site
             debug: false,
@@ -13,7 +13,7 @@
                 postal_code: '#inputZip',
             }]
         });
-        </script>
+        </script> -->
 
 <head>
 
@@ -48,6 +48,7 @@
         <br>
         <!--LISTING FORM START HERE!!-->
         <form>
+            <div class="one">
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="inputName">Your Name!</label>
@@ -178,15 +179,13 @@
                 <label for="inputComments">Additional Comments!</label>
                 <textarea class="form-control form-control-sm" id="inputComments" rows="3" placeholder="Add any additional comments. e.g. 'Notate small damages' 'Additional info' 'Express interest in listing for pictures!'"></textarea>
             </div>
+            </div>
             <br>
-            <!--Q: Easiest way to submit pictures?-->
-            <button type "submit" id="addPhotos" class="btn btn-primary">
-                Add Pictures!
-            </button>
+        
             <button type="submit" id="submitListing" class="btn btn-danger">
                 Submit Listing!
             </button>
-            <a class="btn btn-danger link" href="./showlistings.html">Go To Listings Page
+            <a class="btn btn-danger link" href="./index.html">Go To Listings Page
             </a>
 
         </form>

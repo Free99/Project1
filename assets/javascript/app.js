@@ -318,7 +318,7 @@ $(document).on('click',".daTing",function(){
     var address = contactStreet + " " + contactCity + " "  + contactState + " " + contactZip;
     geocodeAddressListing(geocoder, map, address);
 
-    var listingElement = $('<div class="card" style="width: 18rem;"><div class="card-body"><h5 class="card-title">Listing Details</h5><h6 class="card-subtitle mb-2 text-muted">' + listingName + '</h6></div></div>');
+    var listingElement = $('<div class="card" style="width: 18rem;"><div class="card-body"><h6 class="card-subtitle mb-2 text-muted">' + listingName + '</h6></div></div>');
     listingElement.append('<p class="pl-3"> Contact Name: ' + contactName + '</p>');
     listingElement.append('<p class="pl-3"> Furniture: ' + furnitureType + '</p>');
     listingElement.append('<p class="pl-3"> Furniture details: <p class="pl-5"> Dimensions: ' + furnitureDim + '</p> <p class="pl-5"> Weight: ' + furnitureWeight + '</p><p class="pl-5"> Condition: ' + furnitureCond + '</p></p>');
