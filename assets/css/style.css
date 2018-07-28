@@ -2,7 +2,6 @@
     text-align: center;
     font-size: 70px;
     color: teal;
-    width: 300px;
 }
 #zip{
     text-align: center;
@@ -11,7 +10,7 @@
 }
 #jumbo{
     font-family: 'Courier New', Courier, monospace;
-    background-color: darkred;
+    background-color: whitesmoke;
     border-bottom: 10px solid white;
     border-top: 10px solid white;
     border-left: 5px solid white;
@@ -19,15 +18,9 @@
     
     
 }
-#logo{
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 300px;
-}
 #searchbutton{
-    background-color: rgba(255,255,255,0.5);
-    color: white;
+    background-color: black;
+    color: teal;
     font-weight: bold;
     
 }
@@ -41,8 +34,8 @@ body{
    margin-top: 10%;
 }
 #createbutton{
-    background-color: rgba(255,255,255,0.5);
-    color: white;
+    background-color: black;
+    color: teal;
     margin-top: 15%;
     padding: 10px;
     font-weight: bold;
