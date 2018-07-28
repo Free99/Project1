@@ -6,3 +6,7 @@
     Google Maps API
     Firebase database
     smartysheets API
+    JQuery
+    Async
+    HTML, CSS
+    Bootstrap
